@@ -13,7 +13,7 @@ export class StepFunctionsStateMachine extends Construct {
 
     const logGroup = new logs.LogGroup(this, 'categorize-data-log-group');
 
-    this.stepFunctionsStateMachine = new stepfunctions.StateMachine(this, id, {
+    this.stepFunctionsStateMachine = new stepfunctions.StateMachine(this, 'categorize-data', {
       stateMachineName: "Categorize-Audio-Data-Pipeline",
       definitionBody: stepfunctions.DefinitionBody.fromString(`
 {

@@ -29,7 +29,7 @@ export class CategorizeDataStack extends Stack {
       transcribeAudioRole.role);
 
     const stepFunctionsStateMachine =
-      new step_functions_state_machine.StepFunctionsStateMachine(this, 'StepFunctionsStateMachine',
+      new step_functions_state_machine.StepFunctionsStateMachine(this, 'step-functions-state-machine',
         transcribeAudioLambda.lambdaFunction.functionArn, transcribeStatusLambda.lambdaFunction.functionArn,
         categorizeDataLambda.lambdaFunction.functionArn, stepFunctionsLambdaRole.role.roleArn);
 
@@ -37,7 +37,7 @@ export class CategorizeDataStack extends Stack {
       new run_step_functions_lambda_service.RunStepFunctionsLambdaService(this,
         'run-step-functions-lambda', stepFunctionsStateMachine.stepFunctionsStateMachine.stateMachineArn);
 
-    new meeting_audio_bucket.MeetingAudioBucket(this, 'MeetingAudioBucket',
+    new meeting_audio_bucket.MeetingAudioBucket(this, 'meeting-audio-bucket',
         runStepFunctionsLambda.lambdaFunction);
   }
 }
